@@ -21,17 +21,38 @@
 
     <dependencies>
         <!-- Here are all your dependencies. Currently only one. These are automatically downloaded from https://mvnrepository.com/ -->
-        <dependency>
-            <groupId>com.github.javaparser</groupId>
-            <artifactId>javaparser-core</artifactId>
-            <version>3.23.1</version>
-        </dependency>
-    </dependencies>
+        <!-- <dependency> -->
+            <!-- <groupId>com.github.javaparser</groupId> -->
+            <!-- <artifactId>javaparser-core</artifactId> -->
+            <!-- <version>3.23.1</version> -->
+        <!-- </dependency> -->
+	<dependency>
+       <groupId>org.sonarsource.scanner.maven</groupId>
+       <artifactId>sonar-maven-plugin</artifactId>
+       <version>3.2</version>
+     </dependency>
+         
+    <!-- </dependencies> -->
 
     <!-- This blob of configuration tells Maven to make the jar executable. You can run it with:
     mvn clean package
     java -jar target/javaparser-maven-sample-1.0-SNAPSHOT-shaded.jar
     -->
+	  
+<profile>
+
+    id>sonar</id>
+    <activation>
+    <activeByDefault>true</activeByDefault>
+    </activation>
+    <properties>
+    <!-- Optional URL to server. Default value is http://localhost:9000 -->
+    <sonar.host.url>
+    http://192.168.2.174:9000
+    </sonar.host.url>
+    </properties>
+    </profile>
+  </profiles> 
     <build>
         <plugins>
             <plugin>
@@ -57,4 +78,6 @@
             </plugin>
         </plugins>
     </build>
+	</profile>
+	</profiles>
 </project>
